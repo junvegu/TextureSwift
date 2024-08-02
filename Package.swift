@@ -38,6 +38,14 @@ func IGListKit(enabled: Bool) -> [CSetting] {
   ]
 }
 
+
+func VideoFeature(enabled: Bool) -> [CSetting] {
+  let state: String = enabled ? "1" : "0"
+  return [
+    .define("AS_USE_VIDEO", to: state)
+  ]
+}
+
 let package = Package(
   name: "Texture",
   platforms: [
@@ -60,7 +68,7 @@ let package = Package(
       dependencies: [],
       path: "Source",
       publicHeadersPath: "include",
-      cSettings: headersSearchPath + sharedDefines + IGListKit(enabled: false)
+      cSettings: headersSearchPath + sharedDefines + IGListKit(enabled: false) + VideoFeature(enabled: true)
     )
   ],
   cLanguageStandard: .c11,
